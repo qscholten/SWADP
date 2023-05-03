@@ -5,11 +5,12 @@
 
 class Auto
 {
-	private:
-		Snelheid* snelheid;
-	public:
-		Auto(Snelheid*);
-		virtual void meetSnelheid();
+private:
+	Snelheid* snelheid;
+public:
+	Auto(Snelheid*);
+	virtual ~Auto() {}
+	virtual void meetSnelheid();
 };
 
 #endif

@@ -7,12 +7,9 @@
 
 class AnalogeMeter : public Observer
 {
-	public: 
-		AnalogeMeter(Snelheid* t) : Observer(t) { }
-		virtual void update()
-		{
-			cout << "Analoog: " << dynamic_cast<Snelheid*>(getSubject())->geef() << "\n";
-		}
+public:
+	AnalogeMeter(Snelheid* t);
+	virtual void update();
 };
 
 #endif

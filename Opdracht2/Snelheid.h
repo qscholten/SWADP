@@ -3,15 +3,17 @@
 
 #include <iostream>
 #include "Observer.h"
+#include "Subject.h"
 
 class Snelheid : public Subject
 {
-	private:
-		float waarde;
-	public:
-		Snelheid() : waarde(0) { }
-		virtual void meet() { cin >> "Geef snelheid: " >> waarde; cout << "\n"; notify(); }
-		virtual float geef() { return waarde; }
+private:
+	float waarde;
+public:
+	Snelheid();
+	virtual ~Snelheid() {}
+	virtual void meet();
+	virtual float geef();
 };
 
 #endif // !__Snelheid_H
