@@ -1,4 +1,5 @@
 #include "DigitaleMeter.h"
+#include "Snelheid.h"
 
 DigitaleMeter::DigitaleMeter(Snelheid* t) : Observer(t) {
 }

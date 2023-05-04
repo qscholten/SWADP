@@ -2,7 +2,6 @@
 #define __Snelheid_H
 
 #include <iostream>
-#include "Observer.h"
 #include "Subject.h"
 
 class Snelheid : public Subject

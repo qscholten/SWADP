@@ -1,7 +1,7 @@
 #ifndef __Auto_H
 #define __Auto_H
 
-#include "Snelheid.h"
+class Snelheid;
 
 class Auto
 {
