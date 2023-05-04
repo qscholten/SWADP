@@ -3,7 +3,8 @@
 
 
 #include "Observer.h"
-#include "Snelheid.h"
+
+class Snelheid;
 
 class DigitaleMeter : public Observer
 {

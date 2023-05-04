@@ -3,7 +3,8 @@
 #include <iostream>
 
 #include "Observer.h"
-#include "Snelheid.h"
+
+class Snelheid;
 
 class AnalogeMeter : public Observer
 {
