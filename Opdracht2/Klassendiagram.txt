@@ -1,0 +1,48 @@
+@startuml
+interface Observer {
+    -S: Subject*
+    +Observer(Subject*)
+    {abstract} +update(): void
+    #getSubject(): Subject*
+}
+
+class Subject {
+    -L: List<Observer>
+    +Subject()
+    +insert(observer: Observer): void
+    +remove(observer: Observer): void
+    #notify(): void
+}
+
+class Snelheid {
+    -waarde: float
+    +meet(): void
+    +geef(): float
+}
+
+class Auto {
+    -snelheid: Snelheid*
+    +Auto(snelheid: Snelheid*)
+    +meetSnelheid(): void
+}
+
+class AnalogeMeter {
+    -snelheid: Snelheid*
+    +AnalogeMeter(snelheid: Snelheid*)
+    +update(): void
+}
+
+class DigitaleMeter {
+    -snelheid: Snelheid*
+    +DigitaleMeter(snelheid: Snelheid*)
+    +update(): void
+}
+
+Auto "1" -> "1" Snelheid
+Snelheid --|> Subject
+Subject "1" -> "*" Observer
+AnalogeMeter "*" -up> "1" Snelheid
+DigitaleMeter "*" -up> "1" Snelheid
+AnalogeMeter --|> Observer
+DigitaleMeter --|> Observer
+@enduml

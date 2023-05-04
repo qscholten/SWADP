@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant Auto
+    participant Snelheid
+    participant Subject
+    participant AnalogeMeter
+    participant DigitaleMeter
+    Auto->>Snelheid: meetSnelheid()
+    Snelheid->>Subject: notify()
+    loop i != List.end()
+       Subject->>AnalogeMeter: update()
+       AnalogeMeter->>Snelheid: geef()
+       Snelheid-->>AnalogeMeter: return waarde
+       AnalogeMeter-->>Subject: return
+       Subject->>DigitaleMeter: update()
+       DigitaleMeter->>Snelheid: geef()
+       Snelheid-->>DigitaleMeter: return waarde
+       DigitaleMeter-->>Subject: return
+    end
+    Subject-->>Snelheid : return
+    Snelheid-->>Auto: return
