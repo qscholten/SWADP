@@ -66,7 +66,7 @@ class Ninja : public Element
 		string Name;
 		int AantalLevens;
 	public: Ninja(string n) : Name(n), AantalLevens(1) { }
-		virtual void draw() { cout << name() << AantalLevens; }
+		virtual void draw() { cout << name() << AantalLevens << endl; }
 		virtual string name() { return Name; }
 		virtual int aantalLevens() { return AantalLevens; }
 		virtual void incLevens() { AantalLevens++; }
