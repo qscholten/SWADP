@@ -1,0 +1,34 @@
+@startuml
+participant Auto
+    participant Snelheid
+    participant AnalogeMeter
+    participant DigitaleMeter
+    [-> Auto: meetSnelheid()
+    activate Auto
+    Auto->>Snelheid: meetSnelheid()
+    activate Snelheid
+    Snelheid -> Snelheid: notify()
+    activate Snelheid
+    loop i != List.end()
+       Snelheid->>AnalogeMeter: update()
+       activate AnalogeMeter
+       AnalogeMeter->>Snelheid: geef()
+       activate Snelheid
+       Snelheid-->>AnalogeMeter: return waarde
+       deactivate Snelheid
+       AnalogeMeter-->>Snelheid: return
+       deactivate AnalogeMeter
+       Snelheid->>DigitaleMeter: update()
+       activate DigitaleMeter
+       DigitaleMeter->>Snelheid: geef()
+       activate Snelheid
+       Snelheid-->>DigitaleMeter: return waarde
+       deactivate Snelheid
+       DigitaleMeter-->>Snelheid: return
+       deactivate DigitaleMeter
+       deactivate Snelheid
+    Snelheid-->>Auto: return
+    deactivate Snelheid
+    [<<-- Auto: return
+    deactivate Auto
+@enduml
