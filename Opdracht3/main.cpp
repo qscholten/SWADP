@@ -11,26 +11,26 @@ class Subject;
 
 class Observer
 {
-	private:
-		Subject* S;
-	protected:
-		Subject* getSubject() const { return S; }
-	public:
-		Observer(Subject* s);
-		virtual ~Observer();
-		virtual void update() = 0;
+private:
+	Subject* S;
+protected:
+	Subject* getSubject() const { return S; }
+public:
+	Observer(Subject* s);
+	virtual ~Observer();
+	virtual void update() = 0;
 };
 class Subject
 {
-	private:
-		list<Observer*> L;
-	protected:
-		virtual void notify();
-	public: 
-		Subject() { }
-		virtual ~Subject() { }
-		virtual void insert(Observer* s) { L.push_front(s); }
-		virtual void remove(Observer* s) { L.remove(s); }
+private:
+	list<Observer*> L;
+protected:
+	virtual void notify();
+public:
+	Subject() { }
+	virtual ~Subject() { }
+	virtual void insert(Observer* s) { L.push_front(s); }
+	virtual void remove(Observer* s) { L.remove(s); }
 };
 void Subject::notify()
 {
@@ -54,48 +54,46 @@ Observer::~Observer()
 
 class Element
 {
-	public:
-		virtual ~Element() {}
-		virtual void draw() = 0;
-		virtual string name() = 0;
+public:
+	virtual ~Element() {}
+	virtual void draw() = 0;
+	virtual string name() = 0;
 };
 
-class Ninja : public Element
+class Ninja : public Element, public Subject
 {
-	private: 
-		string Name;
-		int AantalLevens;
-	public: Ninja(string n) : Name(n), AantalLevens(1) { }
-		virtual void draw() { cout << name() << AantalLevens << endl; }
-		virtual string name() { return Name; }
-		virtual int aantalLevens() { return AantalLevens; }
-		virtual void incLevens() { AantalLevens++; }
-		virtual void decLevens() { AantalLevens--; }
+private:
+	string Name;
+	int AantalLevens;
+public: Ninja(string n) : Name(n), AantalLevens(1) { }
+	  virtual void draw() { cout << name() << ": " << AantalLevens << endl; }
+	  virtual string name() { return Name; }
+	  virtual int aantalLevens() { return AantalLevens; }
+	  virtual void incLevens() { AantalLevens++; notify(); }
+	  virtual void decLevens() { AantalLevens--; notify(); }
 };
 
 // ================================================================
 // Interfacelayer
 // ================================================================
 
-class NinjaWindow
+class NinjaWindow: public Observer
 {
-	private:
-		Ninja& N;
-	public:
-		NinjaWindow(Ninja& n) : N(n) {}
-		virtual ~NinjaWindow() {}
-		virtual void draw() { N.draw(); }
+public:
+	NinjaWindow(Subject& n) : Observer(&n) {}
+	virtual ~NinjaWindow() {}
+	virtual void update() { dynamic_cast<Ninja*>(getSubject())->draw(); }
 };
 
 int main()
 {
 	Ninja h("Henk"), j("Joop");
 	NinjaWindow hW(h), jW(j);
-	h.incLevens(); hW.draw();
-	h.incLevens(); hW.draw();
-	j.incLevens(); jW.draw();
-	j.incLevens(); jW.draw();
-	j.incLevens(); jW.draw();
-	h.incLevens(); hW.draw();
+	h.incLevens();
+	h.incLevens();
+	j.incLevens();
+	j.incLevens();
+	j.incLevens();
+	h.incLevens();
 	return 0;
 }
