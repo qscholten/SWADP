@@ -7,14 +7,14 @@ using namespace std;
 
 class Subject
 {
-    private:
-        list<Observer*> L;
-    protected:
-        virtual void notify();
-    public:
-        Subject() {}
-        virtual ~Subject() {}
-        virtual void insert(Observer* s);
-        virtual void remove(Observer* s);
+private:
+    list<Observer*> L;
+protected:
+    virtual void notify();
+public:
+    Subject() {}
+    virtual ~Subject() {}
+    virtual void insert(Observer* s);
+    virtual void remove(Observer* s);
 };
 #endif

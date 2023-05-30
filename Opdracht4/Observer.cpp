@@ -1,4 +1,4 @@
-#include "observer.h"
+#include "Observer.h"
 #include "Subject.h"
 
 Observer::Observer(Subject* s) : S(s)
@@ -9,4 +9,9 @@ Observer::Observer(Subject* s) : S(s)
 Observer::~Observer()
 {
     getSubject()->remove(this);
+}
+
+Subject* Observer::getSubject() const 
+{ 
+    return S; 
 }
