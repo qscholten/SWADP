@@ -3,7 +3,7 @@
 
 #include "Subject.h"
 
-class TSensor: public Subject {
+class TSensor {
 public:
 	virtual ~TSensor() {}
 	virtual void read() = 0;

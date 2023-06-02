@@ -3,7 +3,7 @@
 
 #include "TSensor.h"
 
-class TSensorIMP: public TSensor {
+class TSensorIMP: public TSensor, public Subject {
 public:
 	TSensorIMP();
 	virtual void read();
