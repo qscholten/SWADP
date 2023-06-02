@@ -18,7 +18,6 @@ void MachineIMP::run() {
 	m1->tsensor()->read();
 	m2->start();
 	m2->tsensor()->read();
-	notify();
 }
 
 void MachineIMP::halt() {

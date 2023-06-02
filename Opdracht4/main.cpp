@@ -4,6 +4,7 @@
 #include "MtwoIMP.h"
 #include "MachineIMP.h"
 #include "MachineWindow.h"
+#include "TemperatuurObserver.h"
 
 int main()
 {
@@ -13,8 +14,9 @@ int main()
     MoneIMP m1(&t1);
     MtwoIMP m2(&t2);
     MachineIMP machine(&m1, &m2);
-    MachineWindow mw (&machine);
-    mw.run();
-    mw.halt();
+    TemperatuurObserver to1 (&t1);
+    TemperatuurObserver to2(&t2);
+    machine.run();
+    machine.halt();
     return 0;
 }

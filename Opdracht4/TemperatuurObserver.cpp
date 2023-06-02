@@ -7,5 +7,5 @@ TemperatuurObserver::TemperatuurObserver(Subject* s): Observer(s) {
 }
 
 void TemperatuurObserver::update() {
-	//std::cout << "De temperatuur is: " << dynamic_cast<TSensor*>(getSubject())->temperatuur() << std::endl;
+	std::cout << "De temperatuur is: " << dynamic_cast<TSensor*>(getSubject())->temperatuur() << std::endl;
 }

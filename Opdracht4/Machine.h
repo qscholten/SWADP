@@ -5,7 +5,7 @@
 
 class Motor;
 
-class Machine: public Subject {
+class Machine {
 public:
 	virtual ~Machine() {}
 	virtual Motor* motor1() = 0;
